@@ -2,159 +2,78 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Axic Fotocopy</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #004aad;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .logo img {
-      width: 80px;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .cta {
-      display: inline-block;
-      margin-top: 15px;
-      background: #ffc107;
-      padding: 10px 20px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    section {
-      padding: 40px 20px;
-      background: white;
-      margin: 20px;
-      border-radius: 8px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    input, select, button {
-      padding: 10px;
-      font-size: 1rem;
-    }
-    .preview img {
-      max-width: 200px;
-      margin-top: 10px;
-    }
-    .machine-preview {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .machine-preview img {
-      width: 300px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Halaman Utama -->
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="Logo Axic Fotocopy">
-    </div>
+    <img src="assets/logo.png" alt="Logo Axic" class="logo">
     <h1>Axic Fotocopy</h1>
-    <p>"Cepat, Murah, Berkualitas"</p>
-    <nav>
-      <a href="#layanan">Layanan</a>
-      <a href="#order">Order</a>
-    </nav>
-    <button class="cta" onclick="document.getElementById('layanan').scrollIntoView({ behavior: 'smooth' })">Lihat Layanan</button>
+    <p class="tagline">Cepat, Murah, Berkualitas</p>
+    <img src="assets/tempat.jpg" alt="Foto Usaha" class="hero-img">
+    <div class="cta-buttons">
+      <button onclick="document.getElementById('order').scrollIntoView()">Pesan Sekarang</button>
+      <button onclick="document.getElementById('layanan').scrollIntoView()">Lihat Layanan</button>
+    </div>
   </header>
 
+  <!-- Layanan -->
   <section id="layanan">
     <h2>Layanan Kami</h2>
     <ul>
-      <li>Fotokopi hitam putih & warna - Rp 200/lembar</li>
-      <li>Print dokumen (A4, A3, folio) - Rp 300/lembar</li>
-      <li>Jilid spiral, hardcover, lakban - Mulai Rp 5.000</li>
-      <li>Laminating - Rp 3.000/lembar</li>
-      <li>Cetak foto - Mulai Rp 2.500</li>
-      <li>Scan dokumen - Rp 1.000/lembar</li>
-      <li>Pengetikan - Rp 2.000/halaman</li>
+      <li>Fotokopi hitam putih & warna - Rp200/lembar</li>
+      <li>Print dokumen (A4, A3, folio) - Rp300/lembar</li>
+      <li>Jilid spiral, hardcover, lakban - Mulai Rp7.000</li>
+      <li>Laminating - Rp3.000/lembar</li>
+      <li>Cetak foto - Mulai Rp2.500</li>
+      <li>Scan dokumen - Rp500/lembar</li>
+      <li>Pengetikan - Rp1.000/paragraf</li>
       <li>Isi pulsa/token listrik - Sesuai nominal</li>
     </ul>
   </section>
 
+  <!-- Order Online -->
   <section id="order">
     <h2>Order Online</h2>
-    <form>
-      <label>Unggah Gambar/Dokumen:
-        <input type="file" id="fileInput" accept="image/*,.pdf,.doc,.docx" onchange="previewFile()">
+    <form id="orderForm">
+      <label>Unggah Dokumen/Gambar:
+        <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required>
       </label>
       <label>Jenis Layanan:
-        <select>
-          <option>Fotokopi</option>
-          <option>Print</option>
-          <option>Jilid</option>
-          <option>Laminating</option>
+        <select id="layananSelect">
+          <option value="print">Print</option>
+          <option value="fotokopi">Fotokopi</option>
+          <option value="laminating">Laminating</option>
         </select>
       </label>
       <label>Jumlah:
-        <input type="number" min="1" value="1">
-      </label>
-      <label>Warna:
-        <select>
-          <option>Hitam Putih</option>
-          <option>Warna</option>
-        </select>
+        <input type="number" id="jumlahInput" min="1" value="1">
       </label>
       <label>Metode Pembayaran:
         <select>
+          <option>Transfer</option>
           <option>QRIS</option>
-          <option>Transfer Bank</option>
           <option>COD</option>
         </select>
       </label>
-      <p>Estimasi Waktu: ± 5-10 menit</p>
-      <button type="submit">Kirim</button>
+      <p>Estimasi: ± 5-10 Menit</p>
+      <button type="submit">Kirim Order</button>
     </form>
-    <div class="preview">
-      <h3>Pratinjau Dokumen:</h3>
-      <img id="previewImg" src="" alt="Pratinjau akan muncul di sini">
-    </div>
-    <div class="machine-preview">
-      <h3>Proses Mesin:</h3>
-      <img src="print-process.gif" alt="Mesin Print">
-      <img src="copy-process.gif" alt="Mesin Fotokopi">
-      <img src="laminate-process.gif" alt="Mesin Laminating">
+
+    <!-- Tampilan Simulasi Masuk Mesin -->
+    <div class="mesin-simulasi">
+      <img src="assets/mesin-print.png" alt="Mesin Print" id="mesinPrint">
+      <img src="assets/mesin-fotokopi.png" alt="Mesin Fotokopi" id="mesinFotokopi">
+      <div id="dokumenPreview"></div>
     </div>
   </section>
 
-  <script>
-    function previewFile() {
-      const file = document.getElementById("fileInput").files[0];
-      const preview = document.getElementById("previewImg");
-      const reader = new FileReader();
+  <footer>
+    <p>© 2025 Axic Fotocopy</p>
+  </footer>
 
-      reader.onloadend = function () {
-        preview.src = reader.result;
-      }
-
-      if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        preview.src = "";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
