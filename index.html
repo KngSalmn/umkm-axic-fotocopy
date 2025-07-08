@@ -9,145 +9,150 @@
       font-family: sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
+      background: #f5f5f5;
       color: #333;
     }
     header {
-      background: #007bff;
+      background: #004aad;
       color: white;
+      padding: 30px 20px;
       text-align: center;
-      padding: 40px 20px;
     }
-    header img {
+    .logo img {
       width: 80px;
-      display: block;
-      margin: 0 auto 10px;
     }
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
+      font-weight: bold;
     }
-    .cta-button {
+    .cta {
+      display: inline-block;
+      margin-top: 15px;
       background: #ffc107;
-      color: black;
       padding: 10px 20px;
       border: none;
-      margin-top: 20px;
+      font-size: 16px;
       cursor: pointer;
     }
-    .section {
-      padding: 30px;
+    section {
+      padding: 40px 20px;
       background: white;
-      margin: 10px;
+      margin: 20px;
       border-radius: 8px;
     }
-    .galeri img {
-      width: 100px;
-      margin-right: 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    form input, form select, form button {
-      width: 100%;
-      margin: 10px 0;
+    input, select, button {
       padding: 10px;
+      font-size: 1rem;
     }
-    iframe {
-      width: 100%;
-      height: 300px;
-      border: 0;
-    }
-    .preview {
+    .preview img {
+      max-width: 200px;
       margin-top: 10px;
-      border: 1px solid #ccc;
-      padding: 10px;
-      background: #eee;
+    }
+    .machine-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .machine-preview img {
+      width: 300px;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="assets/logo.png" alt="Logo Axic Fotocopy">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Axic Fotocopy">
+    </div>
     <h1>Axic Fotocopy</h1>
-    <p>Cepat, Murah, Berkualitas</p>
+    <p>"Cepat, Murah, Berkualitas"</p>
     <nav>
       <a href="#layanan">Layanan</a>
       <a href="#order">Order</a>
     </nav>
-    <button class="cta-button" onclick="document.getElementById('order').scrollIntoView()">Pesan Sekarang</button>
+    <button class="cta" onclick="document.getElementById('layanan').scrollIntoView({ behavior: 'smooth' })">Lihat Layanan</button>
   </header>
 
-  <section class="section" id="layanan">
-    <h2>Layanan</h2>
+  <section id="layanan">
+    <h2>Layanan Kami</h2>
     <ul>
-      <li>Fotokopi Hitam Putih & Warna - Rp200/lembar</li>
-      <li>Print Dokumen A4, A3, Folio - Mulai Rp500/lembar</li>
-      <li>Jilid Spiral, Hardcover, Lakban - Rp5.000 - Rp20.000</li>
-      <li>Laminating - Rp3.000/lembar</li>
-      <li>Cetak Foto - Rp2.500/lembar</li>
-      <li>Scan Dokumen - Rp1.000/lembar</li>
-      <li>Pengetikan - Rp2.000/h</li>
-      <li>Isi Pulsa / Token Listrik</li>
+      <li>Fotokopi hitam putih & warna - Rp 200/lembar</li>
+      <li>Print dokumen (A4, A3, folio) - Rp 300/lembar</li>
+      <li>Jilid spiral, hardcover, lakban - Mulai Rp 5.000</li>
+      <li>Laminating - Rp 3.000/lembar</li>
+      <li>Cetak foto - Mulai Rp 2.500</li>
+      <li>Scan dokumen - Rp 1.000/lembar</li>
+      <li>Pengetikan - Rp 2.000/halaman</li>
+      <li>Isi pulsa/token listrik - Sesuai nominal</li>
     </ul>
   </section>
 
-  <section class="section" id="order">
+  <section id="order">
     <h2>Order Online</h2>
     <form>
-      <label>Unggah Dokumen atau Gambar:</label>
-      <input type="file" accept=".pdf,.doc,.docx,.jpg,.png" onchange="previewFile(event)">
-
-      <label>Jenis Layanan:</label>
-      <select>
-        <option>Fotokopi</option>
-        <option>Print</option>
-        <option>Jilid</option>
-        <option>Laminating</option>
-      </select>
-
-      <label>Jumlah:</label>
-      <input type="number" min="1" value="1">
-
-      <label>Warna:</label>
-      <select>
-        <option>Hitam Putih</option>
-        <option>Warna</option>
-      </select>
-
-      <label>Metode Pembayaran:</label>
-      <select>
-        <option>QRIS</option>
-        <option>Transfer</option>
-        <option>COD</option>
-      </select>
-
-      <p><strong>Estimasi Waktu:</strong> ±5-10 menit</p>
-      <button type="submit">Kirim Order</button>
+      <label>Unggah Gambar/Dokumen:
+        <input type="file" id="fileInput" accept="image/*,.pdf,.doc,.docx" onchange="previewFile()">
+      </label>
+      <label>Jenis Layanan:
+        <select>
+          <option>Fotokopi</option>
+          <option>Print</option>
+          <option>Jilid</option>
+          <option>Laminating</option>
+        </select>
+      </label>
+      <label>Jumlah:
+        <input type="number" min="1" value="1">
+      </label>
+      <label>Warna:
+        <select>
+          <option>Hitam Putih</option>
+          <option>Warna</option>
+        </select>
+      </label>
+      <label>Metode Pembayaran:
+        <select>
+          <option>QRIS</option>
+          <option>Transfer Bank</option>
+          <option>COD</option>
+        </select>
+      </label>
+      <p>Estimasi Waktu: 15 - 30 Menit</p>
+      <button type="submit">Kirim</button>
     </form>
-
-    <div class="preview" id="preview-container">
-      <p><strong>Preview Dokumen/Gambar:</strong></p>
-      <img id="preview-image" src="#" alt="Preview" style="max-width: 100%; display: none;">
-    </div>
-
     <div class="preview">
-      <p><strong>Simulasi Proses:</strong></p>
-      <p>Gambar masuk ke mesin fotokopi...</p>
-      <p>📠 Mesin sedang bekerja...</p>
-      <p>✅ Selesai: Dokumen di-print / fotokopi / laminating</p>
+      <h3>Pratinjau Dokumen:</h3>
+      <img id="previewImg" src="" alt="Pratinjau akan muncul di sini">
+    </div>
+    <div class="machine-preview">
+      <h3>Proses Mesin:</h3>
+      <img src="print-process.gif" alt="Mesin Print">
+      <img src="copy-process.gif" alt="Mesin Fotokopi">
+      <img src="laminate-process.gif" alt="Mesin Laminating">
     </div>
   </section>
 
   <script>
-    function previewFile(event) {
-      const file = event.target.files[0];
+    function previewFile() {
+      const file = document.getElementById("fileInput").files[0];
+      const preview = document.getElementById("previewImg");
       const reader = new FileReader();
-      const preview = document.getElementById("preview-image");
-      reader.onload = function() {
+
+      reader.onloadend = function () {
         preview.src = reader.result;
-        preview.style.display = "block";
-      };
+      }
+
       if (file) {
         reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
       }
     }
   </script>
